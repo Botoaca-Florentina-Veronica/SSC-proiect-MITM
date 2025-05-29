@@ -1,0 +1,14 @@
+[package]
+name = "mitm-detector"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "mitm_detector"
+path = "src/lib.rs"
+
+[dependencies]
+pcap = "0.10"           # Pentru captura de pachete
+libc = "0.2"            # Pentru operații de sistem
+chrono = "0.4"          # Pentru timestamp-uri
+dns-lookup = "2.0"      # Pentru rezolvare DNS

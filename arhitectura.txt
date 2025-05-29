@@ -1,0 +1,8 @@
+mitm-detector/
+├── Cargo.toml
+├── src/
+│   ├── main.rs         # Punctul de intrare
+│   ├── detector.rs     # Logica de detectare MITM
+│   └── network.rs      # Funcții de monitorizare rețea
+└── examples/
+    └── demo.rs         # Exemplu de utilizare
