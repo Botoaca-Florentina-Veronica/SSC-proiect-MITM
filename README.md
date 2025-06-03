@@ -1,22 +1,25 @@
-# SSC-proiect-MITM
+# MITM Detector
 
-Explicații despre detectarea MITM
-Scriptul monitorizează mai multe tipuri de atacuri MITM:
+Acest utilitar este conceput pentru a detecta atacuri de tip Man-in-the-Middle (MITM) pe rețele locale, cu accent pe două tipuri principale de anomalii:
 
-ARP Spoofing: Verifică anomalii în tabela ARP (adrese MAC care se schimbă frecvent)
+**1. Detectarea ARP Spoofing:**
+Scriptul monitorizează tabela ARP a sistemului și identifică situațiile în care aceeași adresă IP este asociată cu mai multe adrese MAC diferite. Acest comportament este specific atacurilor de tip ARP spoofing, unde un atacator încearcă să intercepteze sau să modifice traficul dintre două dispozitive din rețea.
 
-Duplicate IP: Detectează mai multe adrese MAC pentru aceeași adresă IP
+**2. Detectarea IP-urilor Duplicat:**
+Scriptul verifică dacă există adrese MAC care apar asociate cu mai multe adrese IP. Acest lucru poate indica probleme de configurare în rețea sau posibile tentative de atac.
 
-DNS Spoofing: Monitorizează traficul DNS pentru activitate suspectă
+**Stocare și monitorizare:**
+Toate alertele generate de script sunt salvate într-o bază de date MongoDB, pentru a putea fi analizate ulterior sau pentru a permite integrarea cu alte sisteme de monitorizare și alertare.
 
-Extensii posibile
-Adăugarea de reguli de detectare mai avansate
+**Utilitate:**
+- Poate fi folosit ca instrument de securitate pentru administratorii de rețea sau pentru aplicații web care doresc să verifice dacă mediul în care rulează este compromis.
+- Poate fi integrat cu sisteme de autentificare pentru a bloca sau semnala login-urile suspecte.
+- Oferă o bază pentru dezvoltarea unor sisteme mai complexe de detecție și prevenție a atacurilor de tip MITM.
 
-Integrare cu sisteme de prevenție a intruziunilor
+**Recomandări:**
+- Scriptul necesită privilegii administrative pentru a accesa tabela ARP.
+- Este recomandat să fie rulat periodic sau la anumite acțiuni critice (ex: autentificare utilizator).
+- Pentru o protecție completă, integrați notificări automate (email, SMS) și monitorizați constant alertele generate.
 
-Notificări în timp real (email, SMS)
-
-Interfață grafică pentru monitorizare
-
-Acest proiect oferă o bază solidă pentru detectarea atacurilor MITM, scrisă în Rust pentru performanță și siguranță. Implementarea reală ar necesita mai multă logică de parsare a pachetelor și analiză mai avansată.
-
+**Scop:**
+MITM Detector este un instrument de bază pentru creșterea securității rețelelor locale și a aplicațiilor care depind de integritatea comunicațiilor de rețea.
