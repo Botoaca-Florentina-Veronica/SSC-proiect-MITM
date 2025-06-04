@@ -3,6 +3,7 @@ mod detector;
 
 use std::time::Duration;
 use std::thread;
+use serde_json;
 
 fn main() {
     println!("MITM Detector starting...");
@@ -33,12 +34,14 @@ fn main() {
         // 4. Afiseaza alerte
         if !alerts.is_empty() {
             println!("=== Potential MITM Attacks Detected ===");
-            for alert in alerts {
+            for alert in &alerts {
                 println!("[!] {}", alert);
             }
         } else {
             println!("No MITM attacks detected in this interval");
         }
+
+        println!("{}", serde_json::to_string(&alerts).unwrap());
 
         thread::sleep(Duration::from_secs(5));
     }

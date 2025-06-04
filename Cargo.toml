@@ -12,3 +12,6 @@ pcap = "0.10"           # Pentru captura de pachete
 libc = "0.2"            # Pentru operații de sistem
 chrono = "0.4"          # Pentru timestamp-uri
 dns-lookup = "2.0"      # Pentru rezolvare DNS
+rusqlite = "0.36.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

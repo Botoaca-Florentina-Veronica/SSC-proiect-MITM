@@ -5,12 +5,21 @@ use chrono::Utc;
 // Structura pentru un pachet de retea
 #[derive(Debug)]
 pub struct NetworkPacket {
-    pub timestamp: i64,
-    pub src_ip: String,
-    pub dst_ip: String,
     pub protocol: String,
-    pub length: usize,
+    pub source_ip: String,
+    pub destination_ip: String,
     pub payload: Vec<u8>,
+}
+
+impl NetworkPacket {
+    pub fn new(protocol: &str, source_ip: &str, destination_ip: &str, payload: Vec<u8>) -> Self {
+        NetworkPacket {
+            protocol: protocol.to_string(),
+            source_ip: source_ip.to_string(),
+            destination_ip: destination_ip.to_string(),
+            payload,
+        }
+    }
 }
 
 // Monitorizeaza traficul de retea
@@ -31,17 +40,14 @@ pub fn monitor_traffic(device: &str, timeout: i32) -> Result<Vec<NetworkPacket>,
     let mut packets = Vec::new();
 
     while let Ok(packet) = cap.next_packet() {
-        let timestamp = Utc::now().timestamp();
         // Aici ar trebui sa facem parsarea pachetului
         // Pentru simplitate, folosim valori dummy
-        packets.push(NetworkPacket {
-            timestamp,
-            src_ip: "192.168.1.1".to_string(),
-            dst_ip: "192.168.1.2".to_string(),
-            protocol: "TCP".to_string(),
-            length: packet.data.len(),
-            payload: packet.data.to_vec(),
-        });
+        packets.push(NetworkPacket::new(
+            "TCP",
+            "192.168.1.1",
+            "192.168.1.2",
+            packet.data.to_vec()
+        ));
     }
 
     Ok(packets)
